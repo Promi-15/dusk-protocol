@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: ./web-prototype/server
+    container_name: dusk-server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./web-prototype/server:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+
+  client:
+    build:
+      context: ./web-prototype/client
+    container_name: dusk-client
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    restart: unless-stopped
