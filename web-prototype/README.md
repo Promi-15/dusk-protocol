@@ -1,131 +1,202 @@
-# Pick and Drop: Air Gesture Image Transfer
+# 🌌 Dusk Protocol — Web Prototype
 
-A web application inspired by Huawei's Air Gesture feature, enabling users to transfer images between devices using hand gestures detected via webcam. Built with React, Express, and ml5.js (Teachable Machine), this project demonstrates real-time gesture recognition and seamless image sharing.
-
----
-
-## Features
-- **Gesture-based Image Transfer:** Upload and send images using "GRAB" and "DROP" hand gestures.
-- **Real-time Webcam Detection:** Utilizes Teachable Machine and ml5.js for gesture classification.
-- **Two-User Demo Flow:** Simulates sender and receiver with unique IDs.
-- **Modern UI:** Responsive, animated interface with clear feedback.
+An experimental web prototype demonstrating **gesture-driven image transfer**, inspired by Huawei’s Air Gesture system. This project showcases real-time interaction between devices using webcam-based hand gesture recognition.
 
 ---
 
+## ✨ Overview
 
-## Getting Started (Local Setup)
+The **Dusk Protocol Web Prototype** enables users to transfer images using intuitive hand gestures like **GRAB** and **DROP**, simulating a seamless cross-device interaction experience.
 
-### Prerequisites
+Built as a modular system inside the `dusk-protocol` repository.
+
+---
+
+## 🚀 Features
+
+- 🎯 **Gesture-Based Transfer**
+  - Use **GRAB** to pick an image
+  - Use **DROP** to send it to another user
+
+- 📷 **Real-Time Detection**
+  - Webcam-powered gesture recognition via Teachable Machine + ml5.js
+
+- 🔗 **Two-User Simulation**
+  - Sender (`id1`) and Receiver (`id2`) interaction flow
+
+- 🎨 **Modern UI**
+  - Responsive and animated interface with real-time feedback
+
+---
+
+## 🏗️ Project Structure
+
+```
+dusk-protocol/
+│
+├── web-prototype/
+│   ├── client/     # React + Vite frontend
+│   └── server/     # Express backend
+│
+└── README.md
+```
+
+---
+
+## ⚙️ Getting Started
+
+### 📋 Prerequisites
+
 - Node.js (v16+ recommended)
 - npm or yarn
 
-### 1. Clone the Repository
+---
+
+### 1️⃣ Clone the Repository
+
 ```bash
-git clone https://github.com/Galib-23/grab-and-drop.git
-cd pick-and-drop
+git clone https://github.com/Galib-23/dusk-protocol.git
+cd dusk-protocol
 ```
 
-### 2. Install Dependencies
+---
+
+### 2️⃣ Install Dependencies
+
 #### Client
 ```bash
-cd client
+cd web-prototype/client
 npm install
 ```
+
 #### Server
 ```bash
 cd ../server
 npm install
 ```
 
-### 3. Run Locally
-#### Start the Server
-```bash
-npm start
-# or
-node index.js
-```
-Server runs on [http://localhost:5000](http://localhost:5000)
+---
 
-#### Start the Client
+### 3️⃣ Run the Application
+
+#### Start Backend
+```bash
+cd web-prototype/server
+npm start
+```
+
+Server runs at:
+👉 http://localhost:5000
+
+#### Start Frontend
 ```bash
 cd ../client
 npm run dev
 ```
-Client runs on [http://localhost:5173](http://localhost:5173)
+
+Client runs at:
+👉 http://localhost:5173
 
 ---
 
-## Deployment
+### ⚡ Optional: One-Command Startup
 
-### Client (Netlify)
-1. Push the `client` folder to a GitHub repository.
-2. Connect the repo to Netlify.
-3. Set build command: `npm run build`
-4. Set publish directory: `dist`
-5. Deploy!
+Use the provided script:
 
-### Server (Render)
-1. Push the folder to a GitHub repository.
-2. Create a new Web Service on Render.
-3. Select the root as `server` directory
-4. Set build command: `npm install`
-5. Set start command: `node index.js`
-6. Set environment (if needed): `PORT=5000`
-7. Deploy!
-
-> **Note:** Update the `API_URL` in the client code to match your deployed backend URL (e.g., `https://your-backend.onrender.com`).
-
----
-
-## Usage
-1. Open the client app in your browser.
-2. On the Home page, select an image and perform a **GRAB** gesture to upload.
-3. Navigate to the Drop page (or use a second device/browser), and perform a **DROP** gesture to receive the image.
-4. The app simulates two users: `id1` (sender) and `id2` (receiver).
-
----
-
-## Technical Details
-- **Frontend:** React, Vite, Tailwind CSS, ml5.js, Teachable Machine
-- **Backend:** Express.js, Multer (file uploads), CORS
-- **Gesture Model:** [Teachable Machine](https://teachablemachine.withgoogle.com/)
-- **APIs:**
-  - `POST /upload` — Upload image (sender)
-  - `GET /drop/:receiverId` — Receive image (receiver)
-
-### Folder Structure
-```
-client/    # React frontend
-server/    # Express backend
+```bash
+./ignite.sh
 ```
 
 ---
 
-## FAQ
+## 🌍 Deployment
 
-**Q: Why isn't my webcam working?**
-- Make sure you allow camera access in your browser.
-- Check browser console for errors.
+### 🖥️ Client (Netlify)
 
-**Q: The gesture isn't detected. What can I do?**
-- Ensure good lighting and clear hand visibility.
-- Try retraining the model or adjusting your gesture.
-
-**Q: Image not transferring?**
-- Ensure both client and server are running and API URLs are correct.
-- Check CORS settings and deployment URLs.
-
-**Q: Can I use this with more than two users?**
-- The demo is set up for two users, but you can extend the `friendsMap` in the backend for more.
+1. Push `web-prototype/client` to GitHub
+2. Connect to Netlify
+3. Build command:
+   ```
+   npm run build
+   ```
+4. Publish directory:
+   ```
+   dist
+   ```
 
 ---
 
-## Credits & Acknowledgments
-- Inspired by Huawei Air Gesture
-- [ml5.js](https://ml5js.org/) & [Teachable Machine](https://teachablemachine.withgoogle.com/)
-- [React](https://react.dev/), [Express](https://expressjs.com/)
+### 🧠 Server (Render)
+
+1. Push repository to GitHub
+2. Create new Web Service on Render
+3. Set root directory:
+   ```
+   web-prototype/server
+   ```
+4. Build command:
+   ```
+   npm install
+   ```
+5. Start command:
+   ```
+   node index.js
+   ```
+6. Environment variable:
+   ```
+   PORT=5000
+   ```
 
 ---
 
-## License
-[MIT](LICENSE)
+## 🔌 API Endpoints
+
+- `POST /upload`  
+  Upload image (sender)
+
+- `GET /drop/:receiverId`  
+  Retrieve image (receiver)
+
+---
+
+## 🧪 Usage Flow
+
+1. Open the frontend in browser
+2. Upload an image
+3. Perform **GRAB** gesture to send
+4. On another session/device:
+   - Perform **DROP** gesture to receive
+
+---
+
+## 🧠 Tech Stack
+
+- **Frontend**
+  - React
+  - Vite
+  - Tailwind CSS
+  - ml5.js
+  - Teachable Machine
+
+- **Backend**
+  - Express.js
+  - Multer
+  - CORS
+
+---
+
+## ❓ FAQ
+
+### Webcam not working?
+- Ensure camera permissions are enabled
+- Check browser console for errors
+
+### Gesture not detected?
+- Improve lighting conditions
+- Keep hand clearly visible
+- Retrain model if needed
+
+### Image not transferring?
+- Verify backend is running
+- Check API URL configuration
+- Ensure CORS is properly set
